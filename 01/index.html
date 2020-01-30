@@ -9,8 +9,67 @@
 
   <style>
     /* Add your styles here :) */
+    *{
+      box-sizing: border-box;
+    }
+    html, body{
+      margin: 0; 
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .grid-container{
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: 40px;
+      row-gap: 20px;
+    }
+    figure{
+      width: 100%;
+      height: auto;
+      background-color: slategray;
+      color: white;
+      margin: 0;
+      position: relative;
+      opacity: 0;
+      transition: ease-in;
+      transition-duration: 300;
+      transition-property: all;
+    }
+    figure img{
+      max-width: 100%;
+    }
+    figure a{
+      color: white;
+      text-decoration: none;
+    }
+    figure figcaption{
+      padding: 10px;
+    }
+    figure a:hover, figure a:focus{
+      color: blue;
+      text-decoration: underline;
+    }
+    .show{
+      -webkit-animation-name: show;
+      -webkit-animation-duration: 600ms;
+      animation-name: show;
+      animation-duration: 600ms;
+      opacity: 1;
+    }
+    @-webkit-keyframes show{
+      0%    {top:50px; opacity: 0;}
+      100%  {top:0px; opacity: 1;}
+    }
+    @keyframes show{
+      0%    {top:50px; opacity: 0;}
+      100%  {top:0px; opacity: 1;}
+    }
   </style>
-
+  
 </head>
 
 <body>
@@ -71,6 +130,20 @@
     </figure>
 
   </div>
+
+  <script>
+    (function(){
+      var elements = document.querySelectorAll('.grid-container figure');
+      for(var i = 0; i < elements.length; i++){
+        // add a call back function to each and animate them loading in
+        let element = document.querySelectorAll('.grid-container figure')[i];
+        setTimeout(function(){
+          // the elements should by default be lower on the screen their final positions
+          element.classList.add('show');
+        },300+(i*300),element);
+      }
+    })();
+  </script>
 </body>
 
 </html>
